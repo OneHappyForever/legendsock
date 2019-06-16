@@ -13,4 +13,6 @@ RUN git clone -b docker https://github.com/OneHappyForever/legendsock.git /usr/l
 
 WORKDIR /usr/local/legendsock
 
-CMD ["/bin/sh" "-c" "sed -i `"s#`"_DATABASE_`"#`"$MYSQL_DB`"#g`" /usr/local/legendsock/usermysql.json && sed -i `"s#`"_USERNAME_`"#`"$MYSQL_USER`"#g`" /usr/local/legendsock/usermysql.json && sed -i `"s#`"_PASSWORD_`"#`"$MYSQL_PASS`"#g`" /usr/local/legendsock/usermysql.json && sed -i `"s#`"_HOSTNAME_`"#`"$MYSQL_HOST`"#g`" /usr/local/legendsock/usermysql.json && sed -i `"s#`"_PORT_`"#`"$MYSQL_PORT`"#g`" /usr/local/legendsock/usermysql.json && legendsock start && tail -f /dev/null"]
+ENTRYPOINT [ "sh", "-c", "sed -i \"s#\"_DATABASE_\"#\"$MYSQL_DB\"#g\" /usr/local/legendsock/usermysql.json && sed -i \"s#\"_USERNAME_\"#\"$MYSQL_USER\"#g\" /usr/local/legendsock/usermysql.json && sed -i \"s#\"_PASSWORD_\"#\"$MYSQL_PASS\"#g\" /usr/local/legendsock/usermysql.json && sed -i \"s#\"_HOSTNAME_\"#\"$MYSQL_HOST\"#g\" /usr/local/legendsock/usermysql.json && sed -i \"s#\"_PORT_\"#\"$MYSQL_PORT\"#g\" /usr/local/legendsock/usermysql.json && legendsock start" ]
+
+RUN ["tail", "-f", "/dev/null"]
