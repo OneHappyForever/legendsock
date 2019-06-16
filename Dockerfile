@@ -13,6 +13,4 @@ RUN git clone -b docker https://github.com/OneHappyForever/legendsock.git /usr/l
 
 WORKDIR /usr/local/legendsock
 
-ENTRYPOINT ["/usr/local/legendsock/docker_run.sh"]
-
-CMD ["tail", "-f", "/dev/null"]
+CMD ["/bin/sh -c 'sed -i \"s#\"_DATABASE_\"#\"$MYSQL_DB\"#g\" /usr/local/legendsock/usermysql.json && \tsed -i \"s#\"_USERNAME_\"#\"$MYSQL_USER\"#g\" /usr/local/legendsock/usermysql.json && \tsed -i \"s#\"_PASSWORD_\"#\"$MYSQL_PASS\"#g\" /usr/local/legendsock/usermysql.json && \tsed -i \"s#\"_HOSTNAME_\"#\"$MYSQL_HOST\"#g\" /usr/local/legendsock/usermysql.json && \tsed -i \"s#\"_PORT_\"#\"$MYSQL_PORT\"#g\" /usr/local/legendsock/usermysql.json && \tsed -ri \"s@^(.*\\\"timeout\\\": ).*@\\1$TCP_TIMEOUT,@\" /usr/local/legendsock/user-config.json && \tsed -ri \"s@^(.*\\\"udp_timeout\\\": ).*@\\1$UDP_TIMEOUT,@\" /usr/local/legendsock/user-config.json && \tlegendsock start && \ttail -f /dev/null'"]
