@@ -15,4 +15,4 @@ sed -i "s#"_PORT_"#"$MYSQL_PORT"#g" /usr/local/legendsock/usermysql.json;
 
 echo $DOCKER_DNS > /usr/local/legendsock/dns.conf
 
-/usr/bin/legendsock start
+/usr/local/legendsock/start.sh
