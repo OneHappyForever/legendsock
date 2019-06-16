@@ -13,6 +13,9 @@ sed -i "s#"_PASSWORD_"#"$MYSQL_PASSWORD"#g" /usr/local/legendsock/usermysql.json
 sed -i "s#"_HOSTNAME_"#"$MYSQL_HOST"#g" /usr/local/legendsock/usermysql.json;
 sed -i "s#"_PORT_"#"$MYSQL_PORT"#g" /usr/local/legendsock/usermysql.json;
 
+mv /usr/local/legendsock/legendsock /usr/bin/legendsock;
+chmod -R 777   /usr/bin/legendsock
+
 echo $DOCKER_DNS > /usr/local/legendsock/dns.conf
 
 legendsock start
